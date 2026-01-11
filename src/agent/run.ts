@@ -19,13 +19,14 @@ export const runAgent = async (
         prompt: userMessage,
         system: SYSTEM_PROMPT,
         tools,
-        stopWhen: stepCountIs(1),
+        stopWhen: stepCountIs(2),
     });
 
-    toolCalls.forEach(async (tc) => {
-        const result = await executeTools(tc.toolName as any, tc.input)
-        console.log(result)
-    })
+    console.log(text)
+    // toolCalls.forEach(async (tc) => {
+    //     const result = await executeTools(tc.toolName as any, tc.input)
+    //     console.log(result)
+    // })
    // console.log(text, toolCalls)
 };
 
