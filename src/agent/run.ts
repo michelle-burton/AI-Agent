@@ -5,6 +5,7 @@ import { openai } from '@ai-sdk/openai'
 import { SYSTEM_PROMPT } from './system/prompt.ts'
 import type { AgentCallbacks } from '../types.ts';
 import {tools} from "./tools/index.ts"
+import { executeTools } from './executeTool.ts';
 const MODEL_NAME = "gpt-5-mini";
 
 
@@ -20,7 +21,12 @@ export const runAgent = async (
         tools,
         stopWhen: stepCountIs(1),
     });
-    console.log(text, toolCalls)
+
+    toolCalls.forEach(async (tc) => {
+        const result = await executeTools(tc.toolName as any, tc.input)
+        console.log(result)
+    })
+   // console.log(text, toolCalls)
 };
 
 // run in terminal: npx tsx src/agent/run.ts
