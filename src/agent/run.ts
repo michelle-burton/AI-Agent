@@ -4,7 +4,9 @@ import { generateText, stepCountIs, type ModelMessage } from 'ai'
 import { openai } from '@ai-sdk/openai'
 import { SYSTEM_PROMPT } from './system/prompt.ts'
 import type { AgentCallbacks } from '../types.ts';
-import {tools} from "./tools/index.ts"
+import { getTracer, Laminar} from '@lmnr-ai/lmnr'
+
+import { tools } from "./tools/index.ts"
 import { executeTools } from './executeTool.ts';
 const MODEL_NAME = "gpt-5-mini";
 
@@ -18,6 +20,7 @@ export const runAgent = async (
         model: openai(MODEL_NAME),
         prompt: userMessage,
         system: SYSTEM_PROMPT,
+        temperature: 0, // less randomness
         tools,
         stopWhen: stepCountIs(2),
     });
