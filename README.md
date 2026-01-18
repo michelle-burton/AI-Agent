@@ -47,3 +47,8 @@ No frontend or UI layer is included—interaction happens entirely via the comma
 ```bash
 git clone https://github.com/your-username/ai-agent-from-scratch.git
 cd ai-agent-from-scratch
+
+## 🛠 Tracer
+
+Tracer:
+https://laminar.sh/project/

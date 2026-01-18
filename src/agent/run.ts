@@ -7,9 +7,12 @@ import type { AgentCallbacks } from '../types.ts';
 import { getTracer, Laminar} from '@lmnr-ai/lmnr'
 
 import { tools } from "./tools/index.ts"
-import { executeTools } from './executeTool.ts';
+
 const MODEL_NAME = "gpt-5-mini";
 
+Laminar.initialize({
+    projectApiKey: process.env.LMNR_PROJECT_API_KEY,
+})
 
 export const runAgent = async (
     userMessage: string,
@@ -20,12 +23,17 @@ export const runAgent = async (
         model: openai(MODEL_NAME),
         prompt: userMessage,
         system: SYSTEM_PROMPT,
-        temperature: 0, // less randomness
+        //temperature: 0, // less randomness
         tools,
-        stopWhen: stepCountIs(2),
+        // stopWhen: stepCountIs(2),
+        experimental_telemetry: {
+            isEnabled: true,
+            tracer: getTracer(),
+        }
     });
 
-    console.log(text)
+     console.log('done')
+    //console.log(text)
     // toolCalls.forEach(async (tc) => {
     //     const result = await executeTools(tc.toolName as any, tc.input)
     //     console.log(result)
@@ -34,4 +42,4 @@ export const runAgent = async (
 };
 
 // run in terminal: npx tsx src/agent/run.ts
-runAgent("What is the current time?")
+//runAgent("What is the current time?")
