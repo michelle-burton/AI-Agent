@@ -48,7 +48,16 @@ No frontend or UI layer is included—interaction happens entirely via the comma
 git clone https://github.com/your-username/ai-agent-from-scratch.git
 cd ai-agent-from-scratch
 
-## 🛠 Tracer
+## 🛠 Tools
 
 Tracer:
 https://laminar.sh/project/
+
+Zod:
+https://zod.dev/
+
+
+## 🛠 Going Forward in terminal:
+- npm run build
+- npm i -g
+- agi 

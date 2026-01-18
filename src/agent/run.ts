@@ -31,6 +31,8 @@ export const runAgent = async (
             tracer: getTracer(),
         }
     });
+    
+    await Laminar.flush();
 
      console.log('done')
     //console.log(text)
@@ -43,3 +45,5 @@ export const runAgent = async (
 
 // run in terminal: npx tsx src/agent/run.ts
 //runAgent("What is the current time?")
+
+
