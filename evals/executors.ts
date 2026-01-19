@@ -11,8 +11,8 @@ import type {
 } from "./types.ts";
 import { readFile } from "fs";
 import { buildMessages } from "./utils.ts";
-import { ToolApproval } from "../src/ui/components/ToolApproval.tsx";
-import { ToolCall } from "../dist/ui/components/ToolCall.js";
+// import { ToolApproval } from "../src/ui/components/ToolApproval.tsx";
+// import { ToolCall } from "../dist/ui/components/ToolCall.js";
 
 const TOOL_DEFINITIONS: any = {
     readFile: {

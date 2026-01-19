@@ -30,7 +30,7 @@ This project is intentionally **minimal and transparent**, prioritizing understa
 
 ---
 
-## 🛠 Tech Stack
+## ⚙️ Tech Stack
 
 - **Node.js**
 - **JavaScript / TypeScript**
@@ -47,7 +47,7 @@ No frontend or UI layer is included—interaction happens entirely via the comma
 - **Tracer** – https://laminar.sh/project/
 - **Zod** – https://zod.dev/
 
-## 🛠 Going Forward in terminal:
+## 🧭 Going Forward in terminal:
 - npm run build
 - npm i -g
 - agi 

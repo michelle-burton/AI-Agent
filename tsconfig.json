@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ES2021" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "target": "ES2022" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
     "lib": ["ES2022"],
 
     "jsx": "react-jsx" /* Specify what JSX code is generated. */,
 
-    "moduleResolution": "bundler" /* Specify how TypeScript looks up a file from a given module specifier. */,
+    "moduleResolution": "NodeNext" /* Specify how TypeScript looks up a file from a given module specifier. */,
 
     "types": ["node"],
 
@@ -28,7 +28,7 @@
     "moduleDetection": "force",
 
     // Ignore module structure
-    "module": "Preserve",
+    "module": "NodeNext",
 
     // Allow JSON modules to be imported
     "resolveJsonModule": true,

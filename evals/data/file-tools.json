@@ -14,7 +14,7 @@
   },
   {
     "data": {
-      "prompt": "Show me all the files in the src directory",
+      "prompt": "Show me all the files in the directory",
       "tools": ["readFile", "writeFile", "listFiles", "deleteFile"]
     },
     "target": {
