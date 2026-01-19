@@ -25,7 +25,22 @@ const TOOL_DEFINITIONS = {
             content: z.string().describe("the content you want to write to the file"),
         })
     },
-    listFile: {},
-    deleteFile: {},
-    runCommand: {},
+    listFile: {
+        description: "List all the files in a directory",
+        parmeters: z.object({
+            path: z.string().describe("the path the directory in which you want to list the files"),
+        })
+    },
+    deleteFile: {
+        description: "Delete the file at the the given path.",
+        parmeters: z.object({
+            path: z.string().describe("the path to the file that you want to delete"),
+        })
+    },
+    runCommand: {
+        description: "Execute a shell command and return its output",
+        parmeters: z.object({
+            path: z.string().describe("the shell command to execute"),
+        })
+    },
 }
