@@ -41,15 +41,6 @@ No frontend or UI layer is included—interaction happens entirely via the comma
 
 ---
 
-## 🚀 Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/your-username/ai-agent-from-scratch.git
-cd ai-agent-from-scratch
-
-
 
 ## 🛠 Tools
 
