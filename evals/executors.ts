@@ -10,8 +10,11 @@ import type {
   MultiTurnResult,
 } from "./types.ts";
 import { readFile } from "fs";
+import { buildMessages } from "./utils.ts";
+import { ToolApproval } from "../src/ui/components/ToolApproval.tsx";
+import { ToolCall } from "../dist/ui/components/ToolCall.js";
 
-const TOOL_DEFINITIONS = {
+const TOOL_DEFINITIONS: any = {
     readFile: {
         description: "Read the contents of a file at the specified path.",
         parmeters: z.object({
@@ -41,6 +44,40 @@ const TOOL_DEFINITIONS = {
         description: "Execute a shell command and return its output",
         parmeters: z.object({
             path: z.string().describe("the shell command to execute"),
-        })
+        }),
     },
-}
+};
+
+export const SingleTurnExecutor = async (data: EvalData) => {
+    const messages = buildMessages(data);
+
+    const tools: ToolSet = {};
+    for (const toolName of data.tools) {
+        const def = TOOL_DEFINITIONS[toolName];
+
+        if (def) {
+            tools[toolName] = tool({
+                description: def.description,
+                inputSchema: def.parmeters,
+            })
+        }
+    }
+    const { toolCalls } = await generateText({
+        model: openai(data.config?.model ?? 'gpt-5-mini'),
+        messages,
+        tools,
+        stopWhen: stepCountIs(1),
+        temperature: data.config?.temperature ?? undefined,
+    })
+    const calls = toolCalls.map((tc) => ({
+        toolName: tc.toolName,
+        args: 'args' in tc ? tc.args : {},
+    }))
+    const toolNames = toolCalls.map((tc) => tc.toolName);
+
+    return {
+        toolCalls,
+        toolNames,
+        selectedAny: toolNames.length > 0,
+    };
+};
