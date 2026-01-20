@@ -1,12 +1,16 @@
 import 'dotenv/config';
-
-import { generateText, stepCountIs, type ModelMessage } from 'ai'
-import { openai } from '@ai-sdk/openai'
+import { streamText, type ModelMessage } from 'ai';
+//import { generateText, stepCountIs, type ModelMessage } from 'ai'
+import { openai } from '@ai-sdk/openai';
+import { getTracer, Laminar } from '@lmnr-ai/lmnr';
+import { tools } from "./tools/index.ts";
+import { executeTools } from "./executeTool.ts"
 import { SYSTEM_PROMPT } from './system/prompt.ts'
-import type { AgentCallbacks } from '../types.ts';
-import { getTracer, Laminar} from '@lmnr-ai/lmnr'
+import type { AgentCallbacks, ToolCallInfo } from '../types.ts';
+import { filterCompatibleMessages} from "./system/filterMessages.ts"
 
-import { tools } from "./tools/index.ts"
+
+
 
 const MODEL_NAME = "gpt-5-mini";
 
