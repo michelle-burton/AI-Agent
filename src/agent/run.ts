@@ -92,8 +92,29 @@ export const runAgent = async (
 
         const responseMessages = await result.response;
         messages.push(...responseMessages.messages);
-        
+
+        for (const tc of toolCalls) {
+            const result = await executeTools(tc.toolName, tc.args);
+
+            callbacks.onToolCallEnd(tc.toolName, result);
+
+            messages.push({
+                role: "tool",
+                content: [
+                    {
+                        type: 'tool-result',
+                        toolCallId: tc.toolCallId,
+                        toolName: tc.toolName,
+                        output: { type: 'text', value: 'result'}
+                    }
+                ]
+            })
+        }
     }
+   
+    callbacks.onComplete(fullResponse);
+    return messages;
+
 }
 
 
