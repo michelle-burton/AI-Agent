@@ -116,10 +116,11 @@ export const runAgent = async (
     }
    
     callbacks.onComplete(fullResponse);
+    console.log(messages)
+
     return messages;
 
 }
-
 
 
 
